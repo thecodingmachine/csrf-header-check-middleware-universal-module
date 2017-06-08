@@ -1,0 +1,24 @@
+{
+  "name": "thecodingmachine/csrf-header-check-middleware-universal-module",
+  "description": "Cross-framework module for thecodingmachine/csrf-header-check-middleware",
+  "license": "MIT",
+  "type": "library",
+  "autoload": {
+    "psr-4": {
+      "TheCodingMachine\\Middlewares\\": "src/"
+    }
+  },
+  "require": {
+    "php": ">=7.0",
+    "container-interop/service-provider": "^0.3",
+    "thecodingmachine/csrf-header-check-middleware": "^1.0",
+    "thecodingmachine/middleware-list-universal-module": "^1.0"
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "extra": {
+    "branch-alias": {
+      "dev-master": "1.0.x-dev"
+    }
+  }
+}

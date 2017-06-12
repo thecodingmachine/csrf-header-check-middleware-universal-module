@@ -19,7 +19,7 @@ class CsrfHeaderCheckMiddlewareServiceProvider implements ServiceProvider
 
     public static function createMiddleware(): CsrfHeaderCheckMiddleware
     {
-        return new CsrfHeaderCheckMiddleware();
+        return CsrfHeaderCheckMiddlewareFactory::createDefault();
     }
 
     public static function updatePriorityQueue(ContainerInterface $container, callable $previous = null) : \SplPriorityQueue

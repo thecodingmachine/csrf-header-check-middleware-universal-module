@@ -2,34 +2,19 @@
 
 namespace TheCodingMachine\Middlewares;
 
-use Interop\Container\ServiceProvider;
-use Psr\Container\ContainerInterface;
+use TheCodingMachine\Funky\Annotations\Tag;
+use TheCodingMachine\Funky\Annotations\Factory;
+use TheCodingMachine\Funky\ServiceProvider;
 use TheCodingMachine\MiddlewareListServiceProvider;
 use TheCodingMachine\MiddlewareOrder;
 
-class CsrfHeaderCheckMiddlewareServiceProvider implements ServiceProvider
+class CsrfHeaderCheckMiddlewareServiceProvider extends ServiceProvider
 {
-    public function getServices()
-    {
-        return [
-            CsrfHeaderCheckMiddleware::class => [self::class, 'createMiddleware'],
-            MiddlewareListServiceProvider::MIDDLEWARES_QUEUE => [self::class, 'updatePriorityQueue'],
-        ];
-    }
-
+    /**
+     * @Factory(tags={@Tag(name=MiddlewareListServiceProvider::MIDDLEWARES_QUEUE, priority=MiddlewareOrder::UTILITY)})
+     */
     public static function createMiddleware(): CsrfHeaderCheckMiddleware
     {
         return CsrfHeaderCheckMiddlewareFactory::createDefault();
-    }
-
-    public static function updatePriorityQueue(ContainerInterface $container, callable $previous = null) : \SplPriorityQueue
-    {
-        if ($previous) {
-            $priorityQueue = $previous();
-            $priorityQueue->insert($container->get(CsrfHeaderCheckMiddleware::class), MiddlewareOrder::UTILITY);
-            return $priorityQueue;
-        } else {
-            throw new \InvalidArgumentException("Could not find declaration for service '".MiddlewareListServiceProvider::MIDDLEWARES_QUEUE."'.");
-        }
     }
 }

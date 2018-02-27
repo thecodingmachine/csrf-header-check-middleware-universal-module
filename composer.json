@@ -11,14 +11,14 @@
   "require": {
     "php": ">=7.0",
     "thecodingmachine/funky": "^1.0",
-    "thecodingmachine/csrf-header-check-middleware": "^1.0",
+    "thecodingmachine/csrf-header-check-middleware": "^2.0",
     "thecodingmachine/middleware-list-universal-module": "^1.0"
   },
   "minimum-stability": "dev",
   "prefer-stable": true,
   "extra": {
     "branch-alias": {
-      "dev-master": "1.1.x-dev"
+      "dev-master": "2.0.x-dev"
     }
   }
 }
